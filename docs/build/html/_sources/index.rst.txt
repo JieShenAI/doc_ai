@@ -8,6 +8,7 @@ Welcome to ai's documentation!
 
 .. toctree::
    open_cv/readme.md
+   d2l/readme.md
 
 
 Indices and tables
