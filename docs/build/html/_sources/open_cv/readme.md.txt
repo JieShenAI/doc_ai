@@ -73,6 +73,10 @@ def hv_stack(img: np.ndarray):
 
 ### 兼容多尺度的图片展示
 
+> 上述的栅格展示只能把相同shape的图片放在一起展示，如下的函数**支持不同shape的图片**的栅格展示 [Just click to see it]()
+
+
+
 
 
 ### 灰度化
