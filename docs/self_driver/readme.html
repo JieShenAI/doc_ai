@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>环境 &mdash; ai 0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> ai
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../open_cv/readme.html">cv2</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ai</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>环境</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/self_driver/readme.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>环境<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h1>
+<section id="tensorflow">
+<h2>tensorflow<a class="headerlink" href="#tensorflow" title="Permalink to this headline"></a></h2>
+<p>擅长静态图</p>
+</section>
+<section id="pytorch">
+<h2>PyTorch<a class="headerlink" href="#pytorch" title="Permalink to this headline"></a></h2>
+<p>擅长动态图</p>
+</section>
+</section>
+<section id="intro">
+<h1>intro<a class="headerlink" href="#intro" title="Permalink to this headline"></a></h1>
+<p>video: https://www.bilibili.com/video/BV1mZ4y1P7y4</p>
+<p>介绍：做一个智能驾驶的模型。
+论文下载：p=21；14:30</p>
+</section>
+<section id="id2">
+<h1>数据处理<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h1>
+<section id="id3">
+<h2>图片正则化<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h2>
+<p>图片的范围是[0,250]，希望数据样本的均值是0，方差为1。</p>
+<p>处理是：<code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">=</span> <span class="pre">X</span> <span class="pre">/250</span> <span class="pre">-</span> <span class="pre">0.5</span></code></p>
+<blockquote>
+<div><p>即使不处理，网络也是可以学到的，但是这样可以减轻网络的负担。</p>
+</div></blockquote>
+</section>
+<section id="batch-normlization">
+<h2>Batch Normlization<a class="headerlink" href="#batch-normlization" title="Permalink to this headline"></a></h2>
+<p>对batch进行正则化</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, JieShen.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

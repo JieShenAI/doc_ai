@@ -1,0 +1,74 @@
+# Created by JieShen at 2022/3/1 16:55
+
+from os import urandom
+from hashlib import md5
+from Crypto.Cipher import AES
+from Crypto.Random import get_random_bytes
+
+
+# import typer
+
+
+def filecrypto(in_file, out_file, password, decrypt: bool = True):
+    salt_header = 'Salted__'
+
+    def derive_key_and_iv(password, salt, key_length, iv_length):
+        d = d_i = b''  # changed '' to b''
+        while len(d) < key_length + iv_length:
+            # changed password to str.encode(password)
+            # d_i = md5(d_i + str.encode(password) + salt).digest()
+            d_i = md5(d_i + password + salt).digest()
+            d += d_i
+
+        return d[:key_length], d[key_length:key_length + iv_length]
+
+    def encrypt_f(in_file, out_file, password, salt_header=salt_header, key_length=32):
+        bs = AES.block_size
+        salt = urandom(bs - len(salt_header))
+        key, iv = derive_key_and_iv(password, salt, key_length, bs)
+        cipher = AES.new(key, AES.MODE_OPENPGP, iv)
+        with open(out_file, 'wb') as f_out:
+            # write the first line or the salted header
+            f_out.write(str.encode(salt_header) + salt)
+            with open(in_file, 'rb') as f_in:
+                tmp = f_in.read()
+                print(len(tmp))
+                f_out.write(cipher.encrypt(tmp))
+
+    def decrypt_f(in_file, out_file, password, salt_header=salt_header, key_length=32):
+        bs = AES.block_size
+        with open(in_file, 'rb') as f_in:
+            # retrieve the salted header
+            salt = f_in.read(bs)[len(salt_header):]
+            key, iv = derive_key_and_iv(password, salt, key_length, bs)
+            cipher = AES.new(key, AES.MODE_OPENPGP, iv)
+            with open(out_file, 'wb') as f_out:
+                f_out.write(cipher.decrypt(f_in.read()))
+
+    return decrypt_f(in_file, out_file, password) if decrypt else encrypt_f(in_file, out_file, password)
+
+
+if __name__ == "__main__":
+    # typer.run(filecrypto)
+    in_file = "in.png"
+    out_file = "out.png"
+    plain = "plain.png"
+    # password = get_random_bytes(16)
+    # password = "b'\x97\x08\xa3}[\x98\xc7\xb9\xd5O\xe5\xa0kz\xea\xb2'"
+    password = "abcdefgh" * 2
+    password = password.encode()
+    print(password)
+    # password = "1222"
+    # k = str.encode(password)
+    # print(k)
+    filecrypto(in_file, out_file, password, False)
+    filecrypto(out_file, plain, password, True)
+
+# if __name__ == '__main__':
+#     in_filename = "test.txt"
+#     out_filename = "res.txt"
+#     password = "12345678"
+# with open(in_filename, 'rb') as in_file, open(out_filename, 'wb') as out_file:
+#     decrypt(in_file, out_file, password)
+# b = password.encode()
+# print(len(b))

@@ -7,7 +7,7 @@ Welcome to ai's documentation!
 ==============================
 
 .. toctree::
-   welcome.md
+   open_cv/readme.md
 
 
 Indices and tables

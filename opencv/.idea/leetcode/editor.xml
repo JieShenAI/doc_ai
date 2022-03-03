@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="LeetcodeEditor">
+    <option name="projectConfig">
+      <map>
+        <entry key="/tmp/leetcode/editor/cn/[258]各位相加.py">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="/tmp/leetcode/editor/cn/doc/content/[258]各位相加.md" />
+              <option name="frontendQuestionId" value="leetcode-cn.com258" />
+              <option name="host" value="leetcode-cn.com" />
+              <option name="path" value="/tmp/leetcode/editor/cn/[258]各位相加.py" />
+              <option name="titleSlug" value="add-digits" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="/tmp/leetcode/editor/cn/[27]移除元素.py">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="/tmp/leetcode/editor/cn/doc/content/[27]移除元素.md" />
+              <option name="frontendQuestionId" value="leetcode-cn.com27" />
+              <option name="host" value="leetcode-cn.com" />
+              <option name="path" value="/tmp/leetcode/editor/cn/[27]移除元素.py" />
+              <option name="titleSlug" value="remove-element" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="/tmp/leetcode/editor/cn/[29]两数相除.py">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="/tmp/leetcode/editor/cn/doc/content/[29]两数相除.md" />
+              <option name="frontendQuestionId" value="leetcode-cn.com29" />
+              <option name="host" value="leetcode-cn.com" />
+              <option name="path" value="/tmp/leetcode/editor/cn/[29]两数相除.py" />
+              <option name="titleSlug" value="divide-two-integers" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="/tmp/leetcode/editor/cn/[31]下一个排列.py">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="/tmp/leetcode/editor/cn/doc/content/[31]下一个排列.md" />
+              <option name="frontendQuestionId" value="leetcode-cn.com31" />
+              <option name="host" value="leetcode-cn.com" />
+              <option name="path" value="/tmp/leetcode/editor/cn/[31]下一个排列.py" />
+              <option name="titleSlug" value="next-permutation" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
