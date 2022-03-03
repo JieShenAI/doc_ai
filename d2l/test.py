@@ -1,22 +1,14 @@
-# Created by JieShen at 2022/3/3 22:11
+# Created by JieShen at 2022/3/3 21:41
 
-import torch
+# %matplotlib inline
+# import math
 import time
+import numpy as np
+from utils import d2l
 
 
-def synthetic_data(w, b, num_examples):
-    """
-    根据真实w,真实b,生成对应的label
-    num_examples为生成的数量
-      y = Xw + b + noise
-    """
-    x = torch.randn(num_examples, len(w))
-    y = torch.matmul(x, w) + bimport
-    # noise
-    noise = torch.normal(0, 0.01, y.shape)
-    y += noise
-    return x, y.reshape(-1, 1)
-
+# import torch
+# from d2l import torch as d2l
 
 class Timer:
     """记录多次运行时间"""
@@ -45,3 +37,11 @@ class Timer:
     def cumsum(self):
         """返回累计时间"""
         return np.array(self.times).cumsum().tolist()
+
+
+if __name__ == '__main__':
+    timer = d2l.Timer()
+    for X in range(10**7):
+        continue
+    t = f'{timer.stop():.2f} sec'
+    print(t)

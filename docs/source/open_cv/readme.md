@@ -73,7 +73,13 @@ def hv_stack(img: np.ndarray):
 
 ### 兼容多尺度的图片展示
 
-> 上述的栅格展示只能把相同shape的图片放在一起展示，如下的函数**支持不同shape的图片**的栅格展示 [Just click to see it]()
+> 上述的栅格展示只能把相同shape的图片放在一起展示，如下的函数**支持不同shape的图片**的栅格展示 
+
+
+
+[Just click to see it](https://github.com/JieShenAI/doc_ai/blob/master/opencv/jshen/img.py)  的 stackImages function.
+
+> https://github.com/JieShenAI/doc_ai/blob/master/opencv/jshen/img.py
 
 
 
@@ -185,7 +191,7 @@ def draw_circle(img: np.ndarray):
 
 
 
-## putText
+### putText
 
 ```python
 cv2.putText(img, "Great Again", (300, 150), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 0), 1)
@@ -215,6 +221,10 @@ def crop1(img: np.ndarray):
 ![image-20220303181541771](readme.assets/image-20220303181541771.png)
 
 
+
+## color detection
+
+continue
 
 
 
