@@ -2,8 +2,9 @@
 
 import cv2
 import numpy as np
+from jshen import jcv2
 
-img = cv2.imread("Resources/cards.jpg")
+img = cv2.imread("Resources/lena.png")
 
 
 def crop1(img: np.ndarray):
@@ -16,8 +17,14 @@ def crop1(img: np.ndarray):
     cv2.imshow("Image", img)
     cv2.imshow("Output", imgOutput)
 
-    cv2.waitKey(0)
+
+def hv_stack(img: np.ndarray):
+    img_hor = np.hstack((img, img, img))
+    img_ver = np.vstack((img_hor, img_hor))
+    # cv2.imshow("hor", img_hor)
+    cv2.imshow("ver", img_ver)
 
 
 if __name__ == '__main__':
-    crop1(img)
+    hv_stack(img)
+    jcv2.wait_q()

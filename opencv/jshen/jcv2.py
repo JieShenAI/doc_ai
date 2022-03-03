@@ -5,5 +5,5 @@ import cv2
 
 def wait_q():
     while True:
-        if cv2.waitKey(0) & 0xFF == 'q':
+        if cv2.waitKey(1) & 0xFF == ord('q'):
             break

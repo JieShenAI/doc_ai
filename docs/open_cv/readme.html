@@ -45,10 +45,23 @@
 <li class="toctree-l2"><a class="reference internal" href="#id1">图片</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2">读取图片</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">展示图片</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">栅格展示</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">兼容多尺度的图片展示</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">灰度化</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">绘图</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">参考资料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">绘图</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#line">line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rectangle">rectangle</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">填充矩形</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#circle">circle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#puttext">putText</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">图片切割</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id10">参考资料</a></li>
 </ul>
 </li>
 </ul>
@@ -112,9 +125,46 @@
 </pre></div>
 </div>
 </section>
-</section>
 <section id="id4">
-<h2>绘图<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<h3>栅格展示<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hv_stack</span><span class="p">(</span><span class="n">img</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+    <span class="n">img_hor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">img</span><span class="p">,</span> <span class="n">img</span><span class="p">))</span>
+    <span class="n">img_ver</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">img</span><span class="p">,</span> <span class="n">img</span><span class="p">))</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;hor&quot;</span><span class="p">,</span> <span class="n">img_hor</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;ver&quot;</span><span class="p">,</span> <span class="n">img_ver</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>将同一shape的图片水平堆叠、垂直堆叠到一起</p>
+<p><img alt="image-20220303182505703" src="../_images/image-20220303182505703.png" /></p>
+<p>将水平堆叠的图片，垂直堆叠到一起</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hv_stack</span><span class="p">(</span><span class="n">img</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+    <span class="n">img_hor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">img</span><span class="p">,</span> <span class="n">img</span><span class="p">,</span> <span class="n">img</span><span class="p">))</span>
+    <span class="n">img_ver</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">img_hor</span><span class="p">,</span> <span class="n">img_hor</span><span class="p">))</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;ver&quot;</span><span class="p">,</span> <span class="n">img_ver</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="image-20220303182738467" src="../_images/image-20220303182738467.png" /></p>
+</section>
+<section id="id5">
+<h3>兼容多尺度的图片展示<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
+<blockquote>
+<div><p>上述的栅格展示只能把相同shape的图片放在一起展示，如下的函数<strong>支持不同shape的图片</strong>的栅格展示 <span class="xref myst">Just click to see it</span></p>
+</div></blockquote>
+</section>
+<section id="id6">
+<h3>灰度化<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">imgGray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id7">
+<h2>绘图<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h2>
+<section id="line">
+<h3>line<a class="headerlink" href="#line" title="Permalink to this headline"></a></h3>
+<blockquote>
+<div><p>修改传入图片的值，而不是生产一个新的图片</p>
+</div></blockquote>
 <p>在opencv中</p>
 <p><img alt="image-20220303153858728" src="../_images/image-20220303153858728.png" /></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">300</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
@@ -135,9 +185,80 @@
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">cv2.line()</span></code> start起点，end终点，thickness线的宽度；</p>
 <p>通过cv2.line实现对图片矩阵数值的修改后，再通过cv2.imshow展示图片。</p>
+<p>注意到，终点的坐标<code class="docutils literal notranslate"><span class="pre">end</span> <span class="pre">=</span> <span class="pre">(img.shape[1],</span> <span class="pre">img.shape[0])</span></code>。</p>
+<blockquote>
+<div><p>在opencv中，第一个元素是横轴，在numpy矩阵中，第一个元素是纵轴；</p>
+</div></blockquote>
 </section>
-<section id="id5">
-<h2>参考资料<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h2>
+<section id="rectangle">
+<h3>rectangle<a class="headerlink" href="#rectangle" title="Permalink to this headline"></a></h3>
+<p><img alt="image-20220303161048661" src="../_images/image-20220303161048661.png" /></p>
+<p>只需要给出矩形左上角坐标和右下角坐标即可</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw_rectangle</span><span class="p">(</span><span class="n">img</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">thickness</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">thickness</span><span class="p">)</span>
+<span class="n">draw_rectangle</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;rec&quot;</span><span class="p">,</span> <span class="n">matrix</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="id8">
+<h4>填充矩形<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h4>
+<p><img alt="image-20220303161312979" src="../_images/image-20220303161312979.png" /></p>
+<p>不要通过加粗矩形框的宽度，使用<code class="docutils literal notranslate"><span class="pre">cv2.FILLED</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw_rectangle</span><span class="p">(</span><span class="n">img</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">FILLED</span><span class="p">)</span>
+<span class="n">draw_rectangle</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;rec&quot;</span><span class="p">,</span> <span class="n">matrix</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="circle">
+<h3>circle<a class="headerlink" href="#circle" title="Permalink to this headline"></a></h3>
+<p><img alt="image-20220303161834986" src="../_images/image-20220303161834986.png" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw_circle</span><span class="p">(</span><span class="n">img</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+    <span class="n">center</span> <span class="o">=</span> <span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+    <span class="n">radius</span> <span class="o">=</span> <span class="mi">150</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+    <span class="n">thickness</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">thickness</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="puttext">
+<h2>putText<a class="headerlink" href="#puttext" title="Permalink to this headline"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cv2</span><span class="o">.</span><span class="n">putText</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="s2">&quot;Great Again&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">150</span><span class="p">),</span> <span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_COMPLEX</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id9">
+<h2>图片切割<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h2>
+<p>把图片从原图扣出来。给定4个坐标，(旋转后)放入新的框内。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">crop1</span><span class="p">(</span><span class="n">img</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;Resources/cards.jpg&quot;</span><span class="p">)</span>
+
+    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">350</span>
+    <span class="n">pts1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">([[</span><span class="mi">111</span><span class="p">,</span> <span class="mi">219</span><span class="p">],</span> <span class="p">[</span><span class="mi">287</span><span class="p">,</span> <span class="mi">188</span><span class="p">],</span> <span class="p">[</span><span class="mi">154</span><span class="p">,</span> <span class="mi">482</span><span class="p">],</span> <span class="p">[</span><span class="mi">352</span><span class="p">,</span> <span class="mi">440</span><span class="p">]])</span>
+    <span class="n">pts2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">width</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">height</span><span class="p">],</span> <span class="p">[</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">]])</span>
+    <span class="n">matrix</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">getPerspectiveTransform</span><span class="p">(</span><span class="n">pts1</span><span class="p">,</span> <span class="n">pts2</span><span class="p">)</span>
+    <span class="n">imgOutput</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">warpPerspective</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
+
+    <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;Image&quot;</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;Output&quot;</span><span class="p">,</span> <span class="n">imgOutput</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="image-20220303181541771" src="../_images/image-20220303181541771.png" /></p>
+</section>
+<section id="id10">
+<h2>参考资料<a class="headerlink" href="#id10" title="Permalink to this headline"></a></h2>
 <p>basic tutorial
 https://github.com/murtazahassan/Learn-OpenCV-in-3-hours</p>
 <p>cv pro

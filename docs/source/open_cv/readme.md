@@ -38,6 +38,55 @@ while True:
     	break
 ```
 
+
+
+### 栅格展示
+
+```python
+def hv_stack(img: np.ndarray):
+    img_hor = np.hstack((img, img))
+    img_ver = np.vstack((img, img))
+    cv2.imshow("hor", img_hor)
+    cv2.imshow("ver", img_ver)
+```
+
+
+
+将同一shape的图片水平堆叠、垂直堆叠到一起
+
+![image-20220303182505703](readme.assets/image-20220303182505703.png)
+
+
+
+将水平堆叠的图片，垂直堆叠到一起
+
+```python
+def hv_stack(img: np.ndarray):
+    img_hor = np.hstack((img, img, img))
+    img_ver = np.vstack((img_hor, img_hor))
+    cv2.imshow("ver", img_ver)
+```
+
+![image-20220303182738467](readme.assets/image-20220303182738467.png)
+
+
+
+### 兼容多尺度的图片展示
+
+> 上述的栅格展示只能把相同shape的图片放在一起展示，如下的函数**支持不同shape的图片**的栅格展示 [Just click to see it]()
+
+
+
+
+
+### 灰度化
+
+```python
+imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+```
+
+
+
 ## 绘图
 
 ### line
@@ -162,6 +211,11 @@ def crop1(img: np.ndarray):
     cv2.imshow("Output", imgOutput)
     cv2.waitKey(0)
 ```
+
+![image-20220303181541771](readme.assets/image-20220303181541771.png)
+
+
+
 
 
 
